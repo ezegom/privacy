@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/parallels/CLionProjects/PrivateUTXO/encryption/encryptor.cpp
+encryptor.h
+/home/parallels/CLionProjects/PrivateUTXO/encryption/encryptor.h
+iostream
+-
+
+/home/parallels/CLionProjects/PrivateUTXO/encryption/encryptor.h
+
+/home/parallels/CLionProjects/PrivateUTXO/encryption/main.cpp
+encryptor.h
+/home/parallels/CLionProjects/PrivateUTXO/encryption/encryptor.h
+

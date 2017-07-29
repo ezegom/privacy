@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/encryptor.dir/main.cpp.o CMakeFiles/encryptor.dir/EncryptionKey.cpp.o CMakeFiles/encryptor.dir/Encryptor.cpp.o  -o encryptor -Wl,-rpath,/usr/local/lib /usr/local/lib/libsodium.so 

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="PrivateUTXO"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\accounts\;CMake Files\cmake\;CMake Files\encryption\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Accounts">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Accounts" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 Accounts"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Accounts/fast">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Accounts" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 Accounts/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="encryptor">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/encryptor" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 encryptor"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="encryptor/fast">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/encryptor" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 encryptor/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/PublicKeys.cpp">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/PublicKeys.h">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/SecretKeys.cpp">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/SecretKeys.h">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/main.cpp">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/EncryptionKey.cpp">
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/EncryptionKey.h">
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/Encryptor.cpp">
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/Encryptor.h">
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/main.cpp">
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/include/prf.cpp">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/include/prf.h">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/include/sha256.cpp">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/include/sha256.h">
+			<Option target="Accounts"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/include/strutils.h">
+			<Option target="Accounts"/>
+			<Option target="encryptor"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\accounts\"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/cmake/Findsodium.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/cmake/Findsodium.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\encryption\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
