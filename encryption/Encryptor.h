@@ -8,9 +8,9 @@
 #include "uint252.h"
 #include "uint256.h"
 #include "EncryptionKey.h"
-#define MESSAGE_SIZE 512
+#define MESSAGE_SIZE 4
 #define ENCRYPTION_AUTH_BYTES 16
-#define CIPHERTEXT_LENGTH  528
+#define CIPHERTEXT_LENGTH  20
 
 
 
@@ -19,8 +19,8 @@ class Encryptor{
 private:
 
 public:
-    std::array<unsigned char, MESSAGE_SIZE> decrypt(EncryptionKey & key, unsigned char* ciphertext);
-    std::array<unsigned char, CIPHERTEXT_LENGTH> encrypt(EncryptionKey & key, unsigned char* plaintext);
+    static std::array<unsigned char, MESSAGE_SIZE> decrypt(EncryptionKey & key, const unsigned char* ciphertext);
+    static std::array<unsigned char, CIPHERTEXT_LENGTH> encrypt(EncryptionKey & key, const unsigned char* plaintext);
 
 };
 

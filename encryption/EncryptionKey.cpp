@@ -8,18 +8,16 @@
 
 
 /*
- *  TODO: Master Key unsigned char array size to be computed from the size of pkEnc+hSig+sharedSecret.
+ * Uses the D-H Shared secret, public keys used in the D-H key exchange and hSig to derive a symmetric key used for
+ * encryption.
+ * Usage:
+ *  - pkEnc refers to the public key of the user decrypting the message.
+ *  - ephPk refers to the public key of the user who encrypted the message.
  */
 void EncryptionKey::deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk, uint256 hSig) {
 
-    unsigned char master_key[32];
     unsigned char sym_key[SYMMETRIC_KEY_SIZE];
     unsigned char _blob[96];
-
-    //Copy the shared secret into master_key
-    memcpy(master_key+0,sharedSecret.begin(),32);
-
-    //Copy the data to be hashed into blob
 
     memcpy(_blob+0, pkEnc.begin(),32);
     memcpy(_blob+64, ephPk.begin(),32);
@@ -27,19 +25,15 @@ void EncryptionKey::deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk
 
 
 
-    //TODO: Check that the encryption was executed correctly. If it doesnt return 0, error.
-    //TODO: For now hsig passed in is all zeros.
     if (crypto_generichash_blake2b_salt_personal(sym_key, sizeof sym_key,
                                              _blob, sizeof _blob,
-                                             master_key, sizeof master_key,
+                                             sharedSecret.begin(), 32,
                                              0, NULL) != 0){
         throw new std::runtime_error("Symmetric encryption key derivation failed");
     }
 
     memcpy(symmetricKey+0,sym_key+0, SYMMETRIC_KEY_SIZE);
 
-    std::cout<<"The derived symmetric key is :"<<std::endl;
-    std::cout<<HexStr(symmetricKey+0,symmetricKey+32)<<std::endl;
 }
 
 
