@@ -9,8 +9,6 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
-
-
 include_directories(
         ${CMAKE_SOURCE_DIR}/include
         ${sodium_INCLUDE_DIR}
@@ -18,13 +16,9 @@ include_directories(
         ../
 )
 
-project(PrivateUTXO CXX)
-set(SOURCE_FILES
-        EncryptionKey.cpp
-        EncryptionKey.h
-        Encryptor.cpp
-        Encryptor.h
-        ../include/strutils.h
-        )
-add_executable(encryptor main.cpp ${SOURCE_FILES})
+file(GLOB source_files
+        "*.h"
+        "*.cpp")
+
+add_executable(encryptor main.cpp ${source_files})
 target_link_libraries(encryptor sodium AccountsLib ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})

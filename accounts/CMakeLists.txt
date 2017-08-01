@@ -16,24 +16,14 @@ if (sodium_FOUND)
     message("[FOUND] Sodium libs at ${sodium_INCLUDE_DIR}")
 endif()
 
-file(GLOB dependencies RELATIVE "../include" "*.cpp") #is not working
+file(GLOB dependencies "../include/*.cpp" "../include/*.cpp")
 
-set(SOURCE_FILES
-        main.cpp
-        SecretKeys.cpp
-        SecretKeys.h
-        PublicKeys.cpp
-        PublicKeys.h
-        ../include/prf.cpp
-        ../include/prf.h
-        ../include/sha256.cpp
-        ../include/sha256.h
-        ../include/strutils.h
-        ${dependencies}
-        )
-message(${SOURCE_FILES})
-add_executable(Accounts ${SOURCE_FILES})
-add_library(AccountsLib ${SOURCE_FILES})
+file(GLOB source_files
+        "*.cpp"
+        "*.h")
+
+add_executable(Accounts ${source_files} ${dependencies})
+add_library(AccountsLib ${source_files} ${dependencies})
 
 target_link_libraries(Accounts sodium ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} )
 
