@@ -1,18 +1,14 @@
 /opt/clion-2017.1.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/parallels/CLionProjects/Privacy
--- The CXX compiler identification is GNU 5.4.0
--- Check for working CXX compiler: /usr/bin/c++
--- Check for working CXX compiler: /usr/bin/c++ -- works
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found sodium: /usr/local/lib/libsodium.so  
 -- Boost version: 1.58.0
 -- Found the following Boost libraries:
 --   filesystem
 --   system
 [FOUND] Sodium libs at /usr/local/include
 main.cppSecretKeys.cppSecretKeys.hPublicKeys.cppPublicKeys.h../include/prf.cpp../include/prf.h../include/sha256.cpp../include/sha256.h../include/strutils.h
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   filesystem
+--   system
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/parallels/CLionProjects/Privacy/cmake-build-debug

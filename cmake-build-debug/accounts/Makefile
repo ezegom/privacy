@@ -111,6 +111,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+accounts/CMakeFiles/AccountsLib.dir/rule:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 accounts/CMakeFiles/AccountsLib.dir/rule
+.PHONY : accounts/CMakeFiles/AccountsLib.dir/rule
+
+# Convenience name for target.
+AccountsLib: accounts/CMakeFiles/AccountsLib.dir/rule
+
+.PHONY : AccountsLib
+
+# fast build rule for target.
+AccountsLib/fast:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/build
+.PHONY : AccountsLib/fast
+
+# Convenience name for target.
 accounts/CMakeFiles/Accounts.dir/rule:
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 accounts/CMakeFiles/Accounts.dir/rule
 .PHONY : accounts/CMakeFiles/Accounts.dir/rule
@@ -131,6 +146,7 @@ PublicKeys.o: PublicKeys.cpp.o
 
 # target to build an object file
 PublicKeys.cpp.o:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/PublicKeys.cpp.o
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/PublicKeys.cpp.o
 .PHONY : PublicKeys.cpp.o
 
@@ -140,6 +156,7 @@ PublicKeys.i: PublicKeys.cpp.i
 
 # target to preprocess a source file
 PublicKeys.cpp.i:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/PublicKeys.cpp.i
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/PublicKeys.cpp.i
 .PHONY : PublicKeys.cpp.i
 
@@ -149,6 +166,7 @@ PublicKeys.s: PublicKeys.cpp.s
 
 # target to generate assembly for a file
 PublicKeys.cpp.s:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/PublicKeys.cpp.s
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/PublicKeys.cpp.s
 .PHONY : PublicKeys.cpp.s
 
@@ -158,6 +176,7 @@ SecretKeys.o: SecretKeys.cpp.o
 
 # target to build an object file
 SecretKeys.cpp.o:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/SecretKeys.cpp.o
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/SecretKeys.cpp.o
 .PHONY : SecretKeys.cpp.o
 
@@ -167,6 +186,7 @@ SecretKeys.i: SecretKeys.cpp.i
 
 # target to preprocess a source file
 SecretKeys.cpp.i:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/SecretKeys.cpp.i
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/SecretKeys.cpp.i
 .PHONY : SecretKeys.cpp.i
 
@@ -176,6 +196,7 @@ SecretKeys.s: SecretKeys.cpp.s
 
 # target to generate assembly for a file
 SecretKeys.cpp.s:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/SecretKeys.cpp.s
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/SecretKeys.cpp.s
 .PHONY : SecretKeys.cpp.s
 
@@ -185,6 +206,7 @@ __/include/prf.o: __/include/prf.cpp.o
 
 # target to build an object file
 __/include/prf.cpp.o:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/prf.cpp.o
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/prf.cpp.o
 .PHONY : __/include/prf.cpp.o
 
@@ -194,6 +216,7 @@ __/include/prf.i: __/include/prf.cpp.i
 
 # target to preprocess a source file
 __/include/prf.cpp.i:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/prf.cpp.i
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/prf.cpp.i
 .PHONY : __/include/prf.cpp.i
 
@@ -203,6 +226,7 @@ __/include/prf.s: __/include/prf.cpp.s
 
 # target to generate assembly for a file
 __/include/prf.cpp.s:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/prf.cpp.s
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/prf.cpp.s
 .PHONY : __/include/prf.cpp.s
 
@@ -212,6 +236,7 @@ __/include/sha256.o: __/include/sha256.cpp.o
 
 # target to build an object file
 __/include/sha256.cpp.o:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/sha256.cpp.o
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/sha256.cpp.o
 .PHONY : __/include/sha256.cpp.o
 
@@ -221,6 +246,7 @@ __/include/sha256.i: __/include/sha256.cpp.i
 
 # target to preprocess a source file
 __/include/sha256.cpp.i:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/sha256.cpp.i
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/sha256.cpp.i
 .PHONY : __/include/sha256.cpp.i
 
@@ -230,6 +256,7 @@ __/include/sha256.s: __/include/sha256.cpp.s
 
 # target to generate assembly for a file
 __/include/sha256.cpp.s:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/__/include/sha256.cpp.s
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/__/include/sha256.cpp.s
 .PHONY : __/include/sha256.cpp.s
 
@@ -239,6 +266,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/main.cpp.o
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/main.cpp.o
 .PHONY : main.cpp.o
 
@@ -248,6 +276,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/main.cpp.i
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/main.cpp.i
 .PHONY : main.cpp.i
 
@@ -257,6 +286,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
+	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/main.cpp.s
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug && $(MAKE) -f accounts/CMakeFiles/Accounts.dir/build.make accounts/CMakeFiles/Accounts.dir/main.cpp.s
 .PHONY : main.cpp.s
 
@@ -267,6 +297,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... AccountsLib"
 	@echo "... rebuild_cache"
 	@echo "... Accounts"
 	@echo "... PublicKeys.o"

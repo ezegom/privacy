@@ -17,6 +17,7 @@ if (sodium_FOUND)
 endif()
 
 file(GLOB dependencies RELATIVE "../include" "*.cpp") #is not working
+
 set(SOURCE_FILES
         main.cpp
         SecretKeys.cpp
@@ -32,5 +33,7 @@ set(SOURCE_FILES
         )
 message(${SOURCE_FILES})
 add_executable(Accounts ${SOURCE_FILES})
+add_library(AccountsLib ${SOURCE_FILES})
+
 target_link_libraries(Accounts sodium ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} )
 

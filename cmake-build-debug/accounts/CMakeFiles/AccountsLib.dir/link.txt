@@ -1,0 +1,2 @@
+/usr/bin/ar qc libAccountsLib.a  CMakeFiles/AccountsLib.dir/main.cpp.o CMakeFiles/AccountsLib.dir/SecretKeys.cpp.o CMakeFiles/AccountsLib.dir/PublicKeys.cpp.o CMakeFiles/AccountsLib.dir/__/include/prf.cpp.o CMakeFiles/AccountsLib.dir/__/include/sha256.cpp.o
+/usr/bin/ranlib libAccountsLib.a

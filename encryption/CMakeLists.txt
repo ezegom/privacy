@@ -3,12 +3,28 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 find_package(sodium)
 
+
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+find_package(Boost COMPONENTS filesystem REQUIRED)
+
+
+
 include_directories(
         ${CMAKE_SOURCE_DIR}/include
         ${sodium_INCLUDE_DIR}
+        ${Boost_INCLUDE_DIRS}
+        ../
 )
 
 project(PrivateUTXO CXX)
-set(SOURCE_FILES EncryptionKey.cpp EncryptionKey.h Encryptor.cpp Encryptor.h ../include/strutils.h)
+set(SOURCE_FILES
+        EncryptionKey.cpp
+        EncryptionKey.h
+        Encryptor.cpp
+        Encryptor.h
+        ../include/strutils.h
+        )
 add_executable(encryptor main.cpp ${SOURCE_FILES})
-target_link_libraries(encryptor sodium)
+target_link_libraries(encryptor sodium AccountsLib ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})

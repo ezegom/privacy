@@ -37,6 +37,54 @@
 					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="AccountsLib">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/libAccountsLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 AccountsLib"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="AccountsLib/fast">
+				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/libAccountsLib.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 AccountsLib/fast"/>
+					<CompileFile command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j2 -f &quot;/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="Accounts">
 				<Option output="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/Accounts" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts"/>
@@ -94,6 +142,7 @@
 				<Compiler>
 					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
 					<Add directory="/usr/local/include"/>
+					<Add directory="/home/parallels/CLionProjects/Privacy/encryption/.."/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -118,6 +167,7 @@
 				<Compiler>
 					<Add directory="/home/parallels/CLionProjects/Privacy/include"/>
 					<Add directory="/usr/local/include"/>
+					<Add directory="/home/parallels/CLionProjects/Privacy/encryption/.."/>
 					<Add directory="/usr/include/c++/5"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
 					<Add directory="/usr/include/c++/5/backward"/>
@@ -135,18 +185,23 @@
 			</Target>
 		</Build>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/PublicKeys.cpp">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/PublicKeys.h">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/SecretKeys.cpp">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/SecretKeys.h">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/accounts/main.cpp">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/encryption/EncryptionKey.cpp">
@@ -165,18 +220,23 @@
 			<Option target="encryptor"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/include/prf.cpp">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/include/prf.h">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/include/sha256.cpp">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/include/sha256.h">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 		</Unit>
 		<Unit filename="/home/parallels/CLionProjects/Privacy/include/strutils.h">
+			<Option target="AccountsLib"/>
 			<Option target="Accounts"/>
 			<Option target="encryptor"/>
 		</Unit>

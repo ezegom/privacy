@@ -21,15 +21,10 @@ public:
 
 class EncryptionKey {
 private:
-    uint256 hSig;
 public:
-    EphemeralKeys eKeys;
     unsigned char symmetricKey[SYMMETRIC_KEY_SIZE];
-    void deriveKey(uint256 pkEnc); //Takes the transmission key of the receiver
-    EncryptionKey(uint256 _hSig);
-    EncryptionKey();
-    static uint256 getDhSharedSecret(const uint256& sk, uint256& pk_enc); //make private, public for testing only.
-
+    void deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk, uint256 hSig);
+    static uint256 getDhSharedSecret(const uint256& sk, uint256& _pk); //make private, public for testing only.
 };
 
 

@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Dependencies for target
+AccountsLib_LIB_DEPENDS:STATIC=
+
+//Dependencies for the target
+Accounts_LIB_DEPENDS:STATIC=general;sodium;general;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;
+
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=Boost_DIR-NOTFOUND
 
@@ -191,6 +197,9 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/sbin/sysctl
+
+//Dependencies for target
+accouts_LIB_DEPENDS:STATIC=
 
 //Path to a file.
 sodium_INCLUDE_DIR:PATH=/usr/local/include

@@ -1,6 +1,7 @@
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/CMakeFiles/edit_cache.dir
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/CMakeFiles/edit_cache.dir
+/home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/CMakeFiles/AccountsLib.dir
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/CMakeFiles/rebuild_cache.dir
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/accounts/CMakeFiles/Accounts.dir
 /home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption/CMakeFiles/rebuild_cache.dir

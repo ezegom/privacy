@@ -6,5 +6,5 @@ CXX_FLAGS = -g   -std=gnu++14
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/parallels/CLionProjects/Privacy/include -isystem /usr/local/include -I/home/parallels/CLionProjects/Privacy/encryption/.. 
+CXX_INCLUDES = -I/home/parallels/CLionProjects/Privacy/include -I/usr/local/include 
 

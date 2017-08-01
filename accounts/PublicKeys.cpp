@@ -72,7 +72,7 @@ void PublicKeys::generateKeys(SecretKeys& sk) {
 
     encPk = generatePkEnc(sk.encSk);
     addrPk = generatePkAddr(sk.addrSk);
-    storeKeys();
+    //storeKeys();
 }
 /*
  * Creates a .pub file containing the address public key followed by the encryption public key in hexadecimal.

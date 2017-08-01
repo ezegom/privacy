@@ -23,8 +23,7 @@ static std::string HexStr(const T itbegin, const T itend);
 class PublicKeys {
 private:
     std::string accName;
-    uint256 addrPk;
-    uint256 encPk;
+
     uint256 generatePkEnc(const uint256 &);
     uint256 generatePkAddr(const uint252 &);
     std::string toHexString() const;
@@ -32,6 +31,8 @@ private:
 
 
 public:
+    uint256 addrPk;
+    uint256 encPk;
     PublicKeys(std::string acc): accName(acc), addrPk(uint256()), encPk(uint256()){};
     void generateKeys(SecretKeys&);
     void paymentAddress() const; //Outputs the payment address

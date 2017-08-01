@@ -47,7 +47,7 @@ void SecretKeys::generateKeys() {
         throw std::logic_error("An account with that name already exists");
     addrSk = random252();
     encSk = encSecretKey();
-    storeKeys();
+    //storeKeys();
 }
 /*
  * Returns a string with the hexadecimal of the address secret key and encryption secret key. Separated by a space.

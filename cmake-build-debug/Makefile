@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named AccountsLib
+
+# Build rule for target.
+AccountsLib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 AccountsLib
+.PHONY : AccountsLib
+
+# fast build rule for target.
+AccountsLib/fast:
+	$(MAKE) -f accounts/CMakeFiles/AccountsLib.dir/build.make accounts/CMakeFiles/AccountsLib.dir/build
+.PHONY : AccountsLib/fast
+
+#=============================================================================
 # Target rules for targets named Accounts
 
 # Build rule for target.
@@ -144,6 +157,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... AccountsLib"
 	@echo "... Accounts"
 	@echo "... encryptor"
 .PHONY : help

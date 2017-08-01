@@ -3,6 +3,8 @@
 //
 #include "Encryptor.h"
 #include "EncryptionKey.h"
+#include "accounts/SecretKeys.h"
+#include "accounts/PublicKeys.h"
 #include "strutils.h"
 
 void testDHSharedSecret(){
@@ -18,7 +20,7 @@ void testDHSharedSecret(){
     std::cout<<HexStr(keys2.esk.begin(),keys2.esk.end())<<std::endl;
     std::cout<<HexStr(keys2.epk.begin(),keys2.epk.end())<<std::endl;
 
-    std::cout<<"Generating D-H Shared Secret, match?: ";
+    std::cout<<"Generating D-H Shared Secret: ";
     uint256 sharedSecret1;
     sharedSecret1 = EncryptionKey::getDhSharedSecret(keys1.esk, keys2.epk);
     uint256 sharedSecret2;
@@ -30,10 +32,40 @@ void testDHSharedSecret(){
         std::cout<<"[FAIL]"<<std::endl;
     }
 }
-
+/*
+ * KDF Test:
+ * Alice sends encrypted message to Bob
+ */
 void testKDF(){
-    EncryptionKey key;
-    key.deriveKey(key.eKeys.epk);
+    //Alice generate ephemeral key pair
+    EphemeralKeys AliceEphemeralKeys;
+    AliceEphemeralKeys.generateKeyPair();
+
+    //Bob's keys
+    std::string name = "Bob";
+    SecretKeys BobSecretKeys(name);
+    BobSecretKeys.generateKeys();
+    PublicKeys BobPublicKeys(name);
+    BobPublicKeys.generateKeys(BobSecretKeys);
+
+    //Alice's shared secret
+    uint256 aliceSharedSecret = EncryptionKey::getDhSharedSecret(AliceEphemeralKeys.esk, BobPublicKeys.encPk);
+
+    //Bob's shared secret
+    uint256 BobSharedSecret = EncryptionKey::getDhSharedSecret(BobSecretKeys.encSk, AliceEphemeralKeys.epk);
+
+    //Get symmetric key with Alice's info
+    EncryptionKey AliceSymKey;
+    AliceSymKey.deriveKey(aliceSharedSecret,BobPublicKeys.encPk,AliceEphemeralKeys.epk,uint256());
+
+    //Note Bob has Alice's public ephemeral key as it is published with the encrypted messages.
+    EncryptionKey BobSymKey;
+    BobSymKey.deriveKey(BobSharedSecret, BobPublicKeys.encPk, AliceEphemeralKeys.epk, uint256());
+
+   if (memcmp(BobSymKey.symmetricKey, AliceSymKey.symmetricKey, 32) == 0){
+        std::cout<<"success is sym key derivation";
+   }
+
 }
 
 

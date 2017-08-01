@@ -143,6 +143,9 @@ encryption/encryptor: encryption/CMakeFiles/encryptor.dir/EncryptionKey.cpp.o
 encryption/encryptor: encryption/CMakeFiles/encryptor.dir/Encryptor.cpp.o
 encryption/encryptor: encryption/CMakeFiles/encryptor.dir/build.make
 encryption/encryptor: /usr/local/lib/libsodium.so
+encryption/encryptor: accounts/libAccountsLib.a
+encryption/encryptor: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+encryption/encryptor: /usr/lib/x86_64-linux-gnu/libboost_system.so
 encryption/encryptor: encryption/CMakeFiles/encryptor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/parallels/CLionProjects/Privacy/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable encryptor"
 	cd /home/parallels/CLionProjects/Privacy/cmake-build-debug/encryption && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/encryptor.dir/link.txt --verbose=$(VERBOSE)
