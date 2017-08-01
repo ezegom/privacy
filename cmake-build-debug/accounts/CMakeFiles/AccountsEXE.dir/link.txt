@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/AccountsEXE.dir/main.cpp.o CMakeFiles/AccountsEXE.dir/SecretKeys.cpp.o CMakeFiles/AccountsEXE.dir/PublicKeys.cpp.o CMakeFiles/AccountsEXE.dir/__/include/prf.cpp.o CMakeFiles/AccountsEXE.dir/__/include/sha256.cpp.o  -o AccountsEXE 
