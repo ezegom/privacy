@@ -9,6 +9,7 @@
 #include "uint256.h"
 #include "EncryptionKey.h"
 #include "note/Note.h"
+
 #define MESSAGE_SIZE 4
 #define ENCRYPTION_AUTH_BYTES 16
 #define CIPHERTEXT_LENGTH  20

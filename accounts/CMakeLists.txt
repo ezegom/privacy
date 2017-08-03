@@ -12,9 +12,6 @@ find_package(Boost COMPONENTS filesystem REQUIRED)
 
 
 include_directories(${CMAKE_SOURCE_DIR}/include ${sodium_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
-if (sodium_FOUND)
-    message("[FOUND] Sodium libs at ${sodium_INCLUDE_DIR}")
-endif()
 
 file(GLOB dependencies "../include/*.cpp" "../include/*.cpp")
 
