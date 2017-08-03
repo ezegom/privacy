@@ -14,14 +14,14 @@
  *  - pkEnc refers to the public key of the user decrypting the message.
  *  - ephPk refers to the public key of the user who encrypted the message.
  */
-void EncryptionKey::deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk, uint256 hSig) {
+void EncryptionKey::deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk, uint256 hSig){
 
     unsigned char sym_key[SYMMETRIC_KEY_SIZE];
     unsigned char _blob[96];
 
     memcpy(_blob+0, pkEnc.begin(),32);
-    memcpy(_blob+64, ephPk.begin(),32);
     memcpy(_blob+32, hSig.begin(),32);
+    memcpy(_blob+64, ephPk.begin(),32);
 
 
 
@@ -52,7 +52,7 @@ uint256 EncryptionKey::getDhSharedSecret(const uint256 & _sk, uint256& _pk){
 
 /*
  * Generates Ephemeral key pair
- * TODO: Clamp the key?
+ * TODO: Clamp the private key?
  */
 void EphemeralKeys::generateKeyPair(){
     esk = random_uint256();
@@ -64,7 +64,7 @@ void EphemeralKeys::generateKeyPair(){
  */
 uint256 EphemeralKeys::getEpk(uint256 &sk){
     uint256 temp;
-    if (crypto_scalarmult_base(temp.begin(), sk.begin()) != 0) {
+    if (crypto_scalarmult_base(temp.begin(), sk.begin()) != 0){
         throw std::logic_error("Could not create public key");
     }
     return temp;

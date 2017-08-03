@@ -49,6 +49,7 @@ void SecretKeys::generateKeys() {
     encSk = encSecretKey();
     //storeKeys();
 }
+
 /*
  * Returns a string with the hexadecimal of the address secret key and encryption secret key. Separated by a space.
  */

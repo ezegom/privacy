@@ -38,10 +38,9 @@ void testDHSharedSecret(){
  */
 #define MESSAGE (const unsigned char *) "test"
 #define MESSAGE_LEN 4
-#define ADDITIONAL_DATA (const unsigned char *) "123456"
-#define ADDITIONAL_DATA_LEN 6
 
-void testKDF(){
+
+void testEncryption(){
     //Alice generate ephemeral key pair
     EphemeralKeys AliceEphemeralKeys;
     AliceEphemeralKeys.generateKeyPair();
@@ -67,7 +66,7 @@ void testKDF(){
     EncryptionKey BobSymKey;
     BobSymKey.deriveKey(BobSharedSecret, BobPublicKeys.encPk, AliceEphemeralKeys.epk, uint256());
 
-   if (memcmp(BobSymKey.symmetricKey, AliceSymKey.symmetricKey, 32) == 0){
+   if (memcmp(BobSymKey.symmetricKey, AliceSymKey.symmetricKey, 32) == 0 ){
         std::cout<<"success in sym key derivation"<<std::endl;
    }
 
@@ -76,7 +75,7 @@ void testKDF(){
 
     auto plaintext = Encryptor::decrypt(BobSymKey,(const unsigned char *)(ciphertext.begin()));
 
-    if (memcmp((void*)MESSAGE, plaintext.begin(),4) == 0){
+    if (memcmp((void*)MESSAGE, plaintext.begin(),MESSAGE_LEN) == 0){
         std::cout<<"success in sym key encryption and decryption"<<std::endl;
     }
 }
@@ -85,6 +84,5 @@ void testKDF(){
 int main (int argc, char ** argsv){
 
     //Test DH-SharedSecret
-    //testDHSharedSecret();
-    testKDF();
+    testEncryption();
 }
