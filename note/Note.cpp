@@ -5,6 +5,7 @@
 #include "Note.h"
 #include "sodium.h"
 #include "strutils.h"
+#define ToCharArr(val) (reinterpret_cast<uint8_t*> (&val))
 
 
 
@@ -13,6 +14,7 @@ uint256 random256(){
     randombytes_buf(rand.begin(),32);
     return rand;
 }
+
 Note::Note(){
     value = 0;
     rho = random256();
@@ -24,33 +26,11 @@ Note::Note(uint64_t _value) : value(_value){
     r = random256();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-#define ToCharArr(val) (reinterpret_cast<uint8_t*> (&val))
-/*
-template <class T>
-uint8_t * toChar(T data){
-    uint64_t val = 0;
-    uint8_t *b = reinterpret_cast<uint8_t*> (&val);
-    return b;
-}
-*/
-
-std::array<unsigned char, NOTE_SIZE> Note::noteToCharArray(){
+std::array<unsigned char, NOTE_PLAINTEXT_BYTES> Note::noteToCharArray(){
 
     uint8_t *valArr = ToCharArr(value);
 
-    std::array<unsigned char, NOTE_SIZE> blob;
+    std::array<unsigned char, NOTE_PLAINTEXT_BYTES> blob;
 
     unsigned char firstByte = 0x00;
     blob[0] = firstByte;

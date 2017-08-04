@@ -56,17 +56,18 @@ uint256 EncryptionKey::getDhSharedSecret(const uint256 & _sk, uint256& _pk){
  */
 void EphemeralKeys::generateKeyPair(){
     esk = random_uint256();
-    epk = getEpk(esk);
+    epk = generateEpk(esk);
 }
 
 /*
  * Generates ephemeral public key from secret key
  */
-uint256 EphemeralKeys::getEpk(uint256 &sk){
+uint256 EphemeralKeys::generateEpk(uint256 &sk){
     uint256 temp;
     if (crypto_scalarmult_base(temp.begin(), sk.begin()) != 0){
         throw std::logic_error("Could not create public key");
     }
+    ePkSet = true;
     return temp;
 }
 
@@ -77,4 +78,16 @@ uint256 EphemeralKeys::random_uint256(){
     uint256 ret;
     randombytes_buf(ret.begin(), 32);
     return ret;
+}
+
+uint256 EphemeralKeys::getEphPk() {
+    if(!ePkSet)
+        throw new std::logic_error("Ephemeral public key not get generated");
+    return epk;
+}
+
+uint256 EphemeralKeys::getEphSk() {
+    if(!ePkSet)
+        throw new std::logic_error("Ephemeral public key not get generated");
+    return esk;
 }

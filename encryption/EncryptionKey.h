@@ -11,12 +11,16 @@
 
 class EphemeralKeys{
 private:
-    uint256 getEpk(uint256 &sk);
+    uint256 generateEpk(uint256 &sk);
     uint256 random_uint256();
-public:
     uint256 esk;
     uint256 epk;
+    bool ePkSet = false;
+public:
+    uint256 getEphPk();
+    uint256 getEphSk();
     void generateKeyPair();
+
 };
 
 class EncryptionKey {
