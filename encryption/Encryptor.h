@@ -18,9 +18,9 @@
 
 class Encryptor{
 public:
-    static std::array<unsigned char, MESSAGE_SIZE> decrypt(EncryptionKey & key, const unsigned char* ciphertext);
-    static std::array<unsigned char, CIPHERTEXT_LENGTH> encrypt(EncryptionKey & key, const unsigned char* plaintext);
-    static std::array<unsigned char, CIPHERTEXT_LENGTH> encryptNote(Note n, uint256 pkEnc, uint256 &ePk, uint256 hSig);
+    static boost::array<unsigned char, MESSAGE_SIZE> decrypt(EncryptionKey & key, const unsigned char* ciphertext);
+    static boost::array<unsigned char, CIPHERTEXT_LENGTH> encrypt(EncryptionKey & key, const unsigned char* plaintext);
+    static boost::array<unsigned char, CIPHERTEXT_LENGTH> encryptNote(Note n, uint256 pkEnc, uint256 &ePk, uint256 hSig);
 };
 
 

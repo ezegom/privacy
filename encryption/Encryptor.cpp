@@ -2,13 +2,14 @@
 // Created by parallels on 7/26/17.
 //
 #include <iostream>
+#include <boost/array.hpp>
 #include "Encryptor.h"
 #include "sodium.h"
 
 
-std::array<unsigned char, CIPHERTEXT_LENGTH> Encryptor::encrypt(EncryptionKey &key, const unsigned char *plaintext) {
+boost::array<unsigned char, CIPHERTEXT_LENGTH> Encryptor::encrypt(EncryptionKey &key, const unsigned char *plaintext) {
 
-    std::array<unsigned char, CIPHERTEXT_LENGTH> ciphertext;
+    boost::array<unsigned char, CIPHERTEXT_LENGTH> ciphertext;
     unsigned long long ciphertext_len;
 
     unsigned char cipher_nonce[crypto_aead_chacha20poly1305_IETF_NPUBBYTES] = {};
@@ -22,8 +23,8 @@ std::array<unsigned char, CIPHERTEXT_LENGTH> Encryptor::encrypt(EncryptionKey &k
     return ciphertext;
 }
 
-std::array<unsigned char, MESSAGE_SIZE> Encryptor::decrypt(EncryptionKey &key, const unsigned char *ciphertext) {
-    std::array<unsigned char, MESSAGE_SIZE> plaintext;
+boost::array<unsigned char, MESSAGE_SIZE> Encryptor::decrypt(EncryptionKey &key, const unsigned char *ciphertext) {
+    boost::array<unsigned char, MESSAGE_SIZE> plaintext;
     unsigned long long plaintext_len;
     unsigned char cipher_nonce[crypto_aead_chacha20poly1305_IETF_NPUBBYTES] = {};
 
