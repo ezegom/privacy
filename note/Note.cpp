@@ -38,19 +38,13 @@ std::array<unsigned char, NOTE_PLAINTEXT_BYTES> Note::noteToCharArray(){
     memcpy(blob.begin()+1, valArr, sizeof(valArr));
     memcpy(blob.begin()+9, rho.begin(),32);
     memcpy(blob.begin()+41, r.begin(), 32);
+/*
     std::cout<<"00";
     std::cout<<HexStr(valArr+0,valArr+8);
     std::cout<<HexStr(rho.begin(),rho.end());
     std::cout<<HexStr(r.begin(),r.end())<<std::endl;
     std::cout<<HexStr(blob.begin(),blob.end())<<std::endl;
+*/
     return blob;
 };
 
-
-int main (int argsc, char **arsgv){
-    Note _note(10);
-    _note.noteToCharArray();
-
-
-
-}

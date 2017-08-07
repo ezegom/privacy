@@ -28,12 +28,14 @@ private:
     uint256 generatePkAddr(const uint252 &);
     std::string toHexString() const;
     void storeKeys(); //called only by generateKeys
+    uint256 pkEnc;
+    uint256 addrPk;
 
 
 public:
-    uint256 addrPk;
-    uint256 encPk;
-    PublicKeys(std::string acc): accName(acc), addrPk(uint256()), encPk(uint256()){};
+    uint256 getPkEnc() { return  pkEnc;}
+    uint256 getAddrPk() { return  addrPk;}
+    PublicKeys(std::string acc): accName(acc), addrPk(uint256()), pkEnc(uint256()){};
     void generateKeys(SecretKeys&);
     void paymentAddress() const; //Outputs the payment address
 

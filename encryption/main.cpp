@@ -7,13 +7,16 @@
 #include "accounts/PublicKeys.h"
 #include "strutils.h"
 
+#include "note/Note.h"
+#include "strutils.h"
+
 
 /*
  * KDF Test:
  * Alice sends encrypted message to Bob
  */
 
-void testEncryption(){
+int testKeyDerivation(){
     //Alice generate ephemeral key pair
     EphemeralKeys AliceEphemeralKeys;
     AliceEphemeralKeys.generateKeyPair();
@@ -26,7 +29,8 @@ void testEncryption(){
     BobPublicKeys.generateKeys(BobSecretKeys);
 
     //Alice's shared secret
-    uint256 aliceSharedSecret = EncryptionKey::getDhSharedSecret(AliceEphemeralKeys.getEphSk(), BobPublicKeys.encPk);
+    auto bobPkEnc = BobPublicKeys.getPkEnc();
+    uint256 aliceSharedSecret = EncryptionKey::getDhSharedSecret(AliceEphemeralKeys.getEphSk(), bobPkEnc);
 
     //Bob's shared secret
     uint256 ephPkAlice = AliceEphemeralKeys.getEphPk();
@@ -34,30 +38,65 @@ void testEncryption(){
 
     //Get symmetric key with Alice's info
     EncryptionKey AliceSymKey;
-    AliceSymKey.deriveKey(aliceSharedSecret,BobPublicKeys.encPk,AliceEphemeralKeys.getEphPk(),uint256());
+    AliceSymKey.deriveKey(aliceSharedSecret,BobPublicKeys.getPkEnc(),AliceEphemeralKeys.getEphPk(),uint256());
 
     //Note Bob has Alice's public ephemeral key as it is published with the encrypted messages.
     EncryptionKey BobSymKey;
-    BobSymKey.deriveKey(BobSharedSecret, BobPublicKeys.encPk, AliceEphemeralKeys.getEphPk(), uint256());
+    BobSymKey.deriveKey(BobSharedSecret, BobPublicKeys.getPkEnc(), AliceEphemeralKeys.getEphPk(), uint256());
 
    if (memcmp(BobSymKey.symmetricKey, AliceSymKey.symmetricKey, 32) == 0 ){
         std::cout<<"success in sym key derivation"<<std::endl;
+       return 0;
    }
-/*
-    auto ciphertext = Encryptor::encrypt(AliceSymKey, MESSAGE);
-    //std::cout<<HexStr(ciphertext.begin(),ciphertext.end())<<std::endl;
+    return -1;
 
-    auto plaintext = Encryptor::decrypt(BobSymKey,(const unsigned char *)(ciphertext.begin()));
+}
 
-    if (memcmp((void*)MESSAGE, plaintext.begin(),MESSAGE_LEN) == 0){
-        std::cout<<"success in sym key encryption and decryption"<<std::endl;
+int testEncryption(){
+    //Create note, with value = 100.
+    Note _note((uint64_t)100);
+
+    SecretKeys BobSecretKeys("Bob");
+    BobSecretKeys.generateKeys();
+    PublicKeys BobPublicKeys("Bob");
+    BobPublicKeys.generateKeys(BobSecretKeys);
+
+    auto noteCharArray = _note.noteToCharArray();
+    auto BobPkEnc = BobPublicKeys.getPkEnc();
+
+    uint256 ephPk; //Ephemeral public key used to encrypt
+
+
+    NoteCiphertext cipherText;
+    Encryptor::encryptNote(cipherText, ephPk,
+                           _note,
+                           BobPkEnc,
+                           uint256());
+
+
+
+    NotePlaintext plainText;
+
+    Encryptor::decryptNoteCiphertext(plainText,
+                                     ephPk, cipherText,
+                                     BobSecretKeys.encSk,
+                                     BobPkEnc,
+                                     uint256());
+
+
+    if (!memcmp(plainText.begin(), noteCharArray.begin(), NOTE_PLAINTEXT_BYTES)){
+        std::cout<<"success in not encryption and decryption"<<std::endl;
     }
-*/
+
+
+    return 0;
 }
 
 
 int main (int argc, char ** argsv){
 
     //Test DH-SharedSecret
+    testKeyDerivation();
     testEncryption();
+
 }

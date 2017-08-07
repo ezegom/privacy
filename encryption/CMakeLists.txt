@@ -21,4 +21,4 @@ file(GLOB source_files
         "*.cpp")
 
 add_executable(encryptor main.cpp ${source_files})
-target_link_libraries(encryptor sodium AccountsLib ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+target_link_libraries(encryptor sodium AccountsLib NoteLib  ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})

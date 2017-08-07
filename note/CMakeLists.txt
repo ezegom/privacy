@@ -13,4 +13,5 @@ file(GLOB source_files
         "*.cpp")
 
 add_executable(Note ${source_files})
+add_library(NoteLib ${source_files})
 target_link_libraries(Note sodium)

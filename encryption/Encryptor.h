@@ -15,19 +15,28 @@
 #define ENCRYPTION_AUTH_BYTES 16
 #define CIPHERTEXT_LENGTH  20
 
-
+typedef std::array<unsigned char, CIPHERTEXT_BYTES> NoteCiphertext;
+typedef std::array<unsigned char, NOTE_PLAINTEXT_BYTES> NotePlaintext;
 
 class Encryptor{
-    typedef std::array<unsigned char, CIPHERTEXT_BYTES> noteCiphertext;
-    typedef std::array<unsigned char, NOTE_PLAINTEXT_BYTES> notePlaintext;
-private:
-    static notePlaintext decrypt(EncryptionKey & key, const unsigned char* ciphertext);
-    static noteCiphertext encrypt(EncryptionKey & key, const unsigned char* plaintext);
 
 public:
+    static void encryptNote(NoteCiphertext &ciphertext,
+                            uint256 &ePk,
+                            Note n,
+                            uint256 pkEnc,
+                            uint256 hSig);
 
-    static notePlaintext decryptNoteCiphertext(noteCiphertext _cipherText, uint256 ePk, uint256 hSig);
-    static noteCiphertext encryptNote(Note n, uint256 pkEnc, uint256 &ePk, uint256 hSig);
+    static void decryptNoteCiphertext(NotePlaintext &pText,
+                                      uint256 & ePk,
+                                      NoteCiphertext _cipherText,
+                                      uint256 skEnc,
+                                      uint256 pkEnc,
+                                      uint256 hSig);
+
+private:
+    static NoteCiphertext encrypt(EncryptionKey& key, NotePlaintext& plaintext);
+    static NotePlaintext decrypt(EncryptionKey& key, NoteCiphertext& ciphertext);
 
 };
 

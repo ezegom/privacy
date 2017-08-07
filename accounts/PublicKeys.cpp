@@ -47,7 +47,7 @@ void PublicKeys::paymentAddress() const{
  */
 std::string PublicKeys::toHexString() const{
     std::string aSkHex = HexStr(addrPk.begin(),addrPk.end());
-    std::string encSkHex = HexStr(encPk.begin(), encPk.end());
+    std::string encSkHex = HexStr(pkEnc.begin(), pkEnc.end());
     std::string temp = aSkHex;
     temp.append(" ");
     temp.append(encSkHex);
@@ -70,7 +70,7 @@ void PublicKeys::generateKeys(SecretKeys& sk) {
     if (boost::filesystem::exists(accName+".pub"))
         throw std::logic_error("An account with that name already exists");
 
-    encPk = generatePkEnc(sk.encSk);
+    pkEnc = generatePkEnc(sk.encSk);
     addrPk = generatePkAddr(sk.addrSk);
     //storeKeys();
 }
