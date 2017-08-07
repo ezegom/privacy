@@ -27,7 +27,10 @@ class EncryptionKey {
 private:
 public:
     unsigned char symmetricKey[SYMMETRIC_KEY_SIZE];
-    void deriveKey(uint256 sharedSecret, uint256 pkEnc, uint256 ephPk, uint256 hSig);
+    void deriveKey(uint256 sharedSecret,
+                   uint256 pkEnc,
+                   uint256 ephPk,
+                   uint256 hSig);
     static uint256 getDhSharedSecret(const uint256& sk, uint256& _pk); //make private, public for testing only.
 };
 

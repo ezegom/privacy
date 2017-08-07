@@ -50,7 +50,6 @@ void Encryptor::encryptNote(NoteCiphertext& ciphertext,
                             uint256 pkEnc,
                             uint256 hSig) {
 
-    NotePlaintext pText = n.noteToCharArray();
     EphemeralKeys eKeyPair;
     eKeyPair.generateKeyPair();
     memcpy(ePk.begin(), eKeyPair.getEphPk().begin(), 32); //copy generated eph key
@@ -58,9 +57,14 @@ void Encryptor::encryptNote(NoteCiphertext& ciphertext,
     auto sharedSecret = EncryptionKey::getDhSharedSecret(eKeyPair.getEphSk(), pkEnc);
 
     EncryptionKey enckey;
-    enckey.deriveKey(sharedSecret, pkEnc, eKeyPair.getEphPk(), hSig);
+    enckey.deriveKey(sharedSecret,
+                     pkEnc,
+                     eKeyPair.getEphPk(),
+                     hSig);
 
-    auto temp = encrypt(enckey,pText);
+    auto notePlainText = n.noteToCharArray();
+
+    auto temp = encrypt(enckey, notePlainText);
     memcpy(ciphertext.begin(), temp.begin(), CIPHERTEXT_BYTES);
 
 }
@@ -75,7 +79,10 @@ void Encryptor::decryptNoteCiphertext(NotePlaintext &plaintext,
     auto sharedSecret = EncryptionKey::getDhSharedSecret(skEnc, ephPk);
 
     EncryptionKey encKey;
-    encKey.deriveKey(sharedSecret, pkEnc, ephPk, hSig);
+    encKey.deriveKey(sharedSecret,
+                     pkEnc,
+                     ephPk,
+                     hSig);
 
     auto temp = decrypt(encKey,_cipherText);
     memcpy(plaintext.begin(),temp.begin() , NOTE_PLAINTEXT_BYTES);

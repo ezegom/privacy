@@ -20,8 +20,10 @@ public:
     std::array<unsigned char, NOTE_PLAINTEXT_BYTES> noteToCharArray();
     Note();
     Note(uint64_t _value);
-    static Note createNote(uint64_t value);
-    Note(uint256 r, uint64_t value, uint256 rho, uint256 a_pk): r(r), value(value), rho(rho), a_pk(a_pk) {};
+    Note(uint256 r,
+         uint64_t value,
+         uint256 rho,
+         uint256 a_pk) : r(r), value(value), rho(rho), a_pk(a_pk) {};
 };
 
 
