@@ -64,14 +64,14 @@ std::string PublicKeys::toHexString() const{
 void PublicKeys::generateKeys(SecretKeys& sk) {
     //Secret keys must be created first
     //If encryption secret key is set, addrSk must be set too.
-    if (sk.encSk.IsNull())
+    if (sk.getEncSk().IsNull())
         throw std::logic_error("Secret keys must be generated");
 
     if (boost::filesystem::exists(accName+".pub"))
         throw std::logic_error("An account with that name already exists");
 
-    pkEnc = generatePkEnc(sk.encSk);
-    addrPk = generatePkAddr(sk.addrSk);
+    pkEnc = generatePkEnc(sk.getEncSk());
+    addrPk = generatePkAddr(sk.getAddrSk());
     //storeKeys();
 }
 /*

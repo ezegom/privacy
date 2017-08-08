@@ -16,13 +16,15 @@ private:
     uint256 encSecretKey();
     void storeKeys() const;
     std::string toHexString() const;
+    uint252 addrSk;
+    uint256 encSk;
+
 
 public:
     SecretKeys(std::string _accName) : accName(_accName), addrSk(uint252()) , encSk(uint256()) {}
     void generateKeys();
-
-    uint252 addrSk;
-    uint256 encSk;
+    uint252 getAddrSk(){ return addrSk;}
+    uint256 getEncSk() {return encSk;}
 
 };
 

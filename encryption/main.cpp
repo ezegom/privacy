@@ -34,7 +34,7 @@ int testKeyDerivation(){
 
     //Bob's shared secret
     uint256 ephPkAlice = AliceEphemeralKeys.getEphPk();
-    uint256 BobSharedSecret = EncryptionKey::getDhSharedSecret(BobSecretKeys.encSk, ephPkAlice );
+    uint256 BobSharedSecret = EncryptionKey::getDhSharedSecret(BobSecretKeys.getEncSk(), ephPkAlice );
 
     //Get symmetric key with Alice's info
     EncryptionKey AliceSymKey;
@@ -79,7 +79,7 @@ int testEncryption(){
 
     Encryptor::decryptNoteCiphertext(plainText,
                                      ephPk, cipherText,
-                                     BobSecretKeys.encSk,
+                                     BobSecretKeys.getEncSk(),
                                      BobPkEnc,
                                      uint256());
 
