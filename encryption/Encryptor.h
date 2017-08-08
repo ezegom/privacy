@@ -9,6 +9,7 @@
 #include "uint256.h"
 #include "EncryptionKey.h"
 #include "note/Note.h"
+#include "constants.h"
 #include <array>
 
 #define MESSAGE_SIZE 4

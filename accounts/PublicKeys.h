@@ -35,7 +35,7 @@ private:
 public:
     uint256 getPkEnc() { return  pkEnc;}
     uint256 getAddrPk() { return  addrPk;}
-    PublicKeys(std::string acc): accName(acc), addrPk(uint256()), pkEnc(uint256()){};
+    explicit PublicKeys(std::string acc): accName(acc), addrPk(uint256()), pkEnc(uint256()){};
     void generateKeys(SecretKeys&);
     void paymentAddress() const; //Outputs the payment address
 

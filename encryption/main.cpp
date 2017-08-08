@@ -85,8 +85,10 @@ int testEncryption(){
 
 
     if (!memcmp(plainText.begin(), noteCharArray.begin(), NOTE_PLAINTEXT_BYTES)){
-        std::cout<<"success in not encryption and decryption"<<std::endl;
+        //std::cout<<"success in not encryption and decryption"<<std::endl;
     }
+
+    Note newNote = Note::plaintextToNote(plainText);
 
 
     return 0;
