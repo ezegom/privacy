@@ -13,26 +13,29 @@ typedef std::array<unsigned char, NOTE_PLAINTEXT_BYTES> NotePlaintext;
 class Note {
 
 private:
-    uint256 r, rho, a_pk;
+    uint256 r, rho, pkEnc;
     uint64_t value;
 
 public:
-    std::array<unsigned char, NOTE_PLAINTEXT_BYTES> noteToCharArray();
 
     Note();
 
-    explicit Note(uint64_t _value);
+    Note(uint64_t _value,
+         uint256 pkEnc);
 
     Note(uint256 r,
          uint64_t value,
          uint256 rho,
-         uint256 a_pk) : r(r), value(value), rho(rho), a_pk(a_pk) {};
+         uint256 a_pk) : r(r), value(value), rho(rho), pkEnc(a_pk) {};
 
     Note(uint64_t _value,
          uint256 _rho,
          uint256 _r): value(_value), rho(_rho), r(_r) {};
 
     static Note plaintextToNote(std::array<unsigned char, NOTE_PLAINTEXT_BYTES> blob);
+
+    std::array<unsigned char, NOTE_PLAINTEXT_BYTES> noteToCharArray();
+
 
 };
 

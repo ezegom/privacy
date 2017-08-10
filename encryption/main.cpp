@@ -54,12 +54,14 @@ int testKeyDerivation(){
 
 int testEncryption(){
     //Create note, with value = 100.
-    Note _note((uint64_t)100);
 
     SecretKeys BobSecretKeys("Bob");
     BobSecretKeys.generateKeys();
     PublicKeys BobPublicKeys("Bob");
     BobPublicKeys.generateKeys(BobSecretKeys);
+
+    Note _note((uint64_t)100, BobPublicKeys.getPkEnc());
+
 
     auto noteCharArray = _note.noteToCharArray();
     auto BobPkEnc = BobPublicKeys.getPkEnc();

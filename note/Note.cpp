@@ -23,7 +23,8 @@ Note::Note(){
     r = uint256();
 }
 
-Note::Note(uint64_t _value) : value(_value){
+
+Note::Note(uint64_t _value, uint256 _pkEnc): value(_value), pkEnc(_pkEnc){
     rho = random256();
     r = random256();
 }
