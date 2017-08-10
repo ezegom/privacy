@@ -5,6 +5,7 @@
 #ifndef PRIVATEUTXO_NOTE_H
 #define PRIVATEUTXO_NOTE_H
 #include "uint256.h"
+#include "uint252.h"
 #include "constants.h"
 #include <array>
 #include <iostream>
@@ -13,20 +14,19 @@ typedef std::array<unsigned char, NOTE_PLAINTEXT_BYTES> NotePlaintext;
 class Note {
 
 private:
-    uint256 r, rho, pkEnc;
+    uint256 r, rho, a_pk;
     uint64_t value;
 
 public:
 
     Note();
 
-    Note(uint64_t _value,
-         uint256 pkEnc);
+    Note(uint64_t _value, uint256 a_pk);
 
-    Note(uint256 r,
-         uint64_t value,
-         uint256 rho,
-         uint256 a_pk) : r(r), value(value), rho(rho), pkEnc(a_pk) {};
+    Note(uint256 _r,
+         uint64_t _value,
+         uint256 _rho,
+         uint256 _a_pk) : r(_r), value(_value), rho(_rho), a_pk(_a_pk) {};
 
     Note(uint64_t _value,
          uint256 _rho,
@@ -36,6 +36,9 @@ public:
 
     std::array<unsigned char, NOTE_PLAINTEXT_BYTES> noteToCharArray();
 
+    uint256 cm();
+
+    uint256 nullifier(uint252 aSk);
 
 };
 

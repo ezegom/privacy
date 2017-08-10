@@ -92,13 +92,14 @@ int testEncryption(){
 
     Note newNote = Note::plaintextToNote(plainText);
 
+    Note emptyNote;
+    newNote.nullifier(BobSecretKeys.getAddrSk());
 
     return 0;
 }
 
 
 int main (int argc, char ** argsv){
-
     //Test DH-SharedSecret
     testKeyDerivation();
     testEncryption();
