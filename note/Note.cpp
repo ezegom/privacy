@@ -88,7 +88,7 @@ uint256 Note::cm(){
     memcpy(&blob[73], r.begin(), 32);
     CSHA256 sha256Hasher;
     sha256Hasher.Write(blob, 105);
-    sha256Hasher.FinalizeNoPadding(noteCommitment.begin());
+    sha256Hasher.Finalize(noteCommitment.begin());
 
     return noteCommitment;
 

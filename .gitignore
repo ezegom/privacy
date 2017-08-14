@@ -1,2 +1,4 @@
 /cmake-build-debug/*
 workspace.xml
+/debug-build/
+/.vscode/
