@@ -2,3 +2,4 @@
 workspace.xml
 /debug-build/
 /.vscode/
+/build/

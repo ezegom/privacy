@@ -11,6 +11,7 @@ find_package(Boost COMPONENTS filesystem REQUIRED)
 
 include_directories(
         ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_SOURCE_DIR}/include/ametsuchi/include/ametsuchi
         ${sodium_INCLUDE_DIR}
         ${Boost_INCLUDE_DIRS}
         ../
