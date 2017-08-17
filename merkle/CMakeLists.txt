@@ -9,14 +9,30 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
+set(AMETSUCHI_INCLUDE 
+        ../iroha-ametsuchi/include
+        ../iroha-ametsuchi/schema
+        )
+set(AMETSUCHI_SRC
+        ../iroha-ametsuchi/src/ametsuchi
+        ../iroha-ametsuchi/src/ametsuchi/merkle_tree
+        
+)
+set(EXTERNAL_INCLUDE
+        ../iroha-ametsuchi/external/src/google_flatbuffers/include
+        ../iroha-ametsuchi/external/src/lmdb_LMDB/libraries/liblmdb
+        ../iroha-ametsuchi/external/src/gvanas_keccak/bin/generic64/libkeccak.a.headers
+        )
 include_directories(
         ${CMAKE_SOURCE_DIR}/include 
         ${sodium_INCLUDE_DIR} 
         ${Boost_INCLUDE_DIRS}
-        ../iroha-ametsuchi/include
+        ${AMETSUCHI_INCLUDE}
+        ${EXTERNAL_INCLUDE}
         ../accounts
         ../note
         )
+
 
 file(GLOB dependencies 
         "../include/*.cpp" 
@@ -28,12 +44,12 @@ file(GLOB source_files
         "*.h"
         )
 
-
 add_executable(MerkleTest 
         ${source_files} 
         ${dependencies}
+        ${AMETSUCHI_INCLUDE}
+        ${AMETSUCHI_SRC}
         )
-
 add_dependencies(MerkleTest
         ametsuchi
         AccountsLib
@@ -47,7 +63,7 @@ target_link_libraries(MerkleTest
         AccountsLib
         NoteLib      
         )
-
+        
 add_library(MerkleLib 
         ${source_files} 
         ${dependencies}

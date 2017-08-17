@@ -57,22 +57,9 @@ void test(){
     print("Note created");
     
     auto cm = note.cm();
-    // TODO debug
-    // In sha256.cpp 
-    //  in sha256Hasher.FinalizeNoPadding(noteCommitment.begin())
-    //      terminate called after throwing an instance of 'std::length_error'
-    //          what():  SHA256Compress should be invoked with a 512-bit block
-    // 
-    // In sha256.cpp
-    //  in sha256Hasher.Write(blob, 105);
-    //  in CSHA256::Write(const unsigned char* data, size_t len)
-    //    if (end > data) {
-    //      memcpy(buf + bufsize, data, end - data); <- error
-    //      bytes += end - data;
-    //    }
-    print("CM:", cm);
+    print("[CM]", cm);
     auto nullifier = note.nullifier(addrSk);
-    print("Nullifier: ", nullifier);
+    print("[Nullifier]", nullifier);
     // TODO ametsuchi 
 }
 
