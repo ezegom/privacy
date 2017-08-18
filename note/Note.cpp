@@ -87,11 +87,14 @@ uint256 Note::cm(){
     memcpy(&blob[41], rho.begin(),32);
     memcpy(&blob[73], r.begin(), 32);
     CSHA256 sha256Hasher;
+
+    // sha256Hasher.byte is 105
     sha256Hasher.Write(blob, 105);
+    // FinalizeNoPadding throw exception (byte!=64 --> true)
+    // changed to Finalize
     sha256Hasher.Finalize(noteCommitment.begin());
 
     return noteCommitment;
-
 }
 
 uint256 Note::nullifier(uint252 aSk) {
