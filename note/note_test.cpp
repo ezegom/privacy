@@ -39,22 +39,18 @@ void test(){
     if (sodium_init() == -1 ){
         throw std::runtime_error("Sodium init failed");
     }
-    print("sodium was initialized!");
+    
     std::string name = "note_test";
+    // creating key pairs
     SecretKeys sks(name);
     sks.generateKeys();
-    print("secret key was generated");
     PublicKeys pks(name);
     pks.generateKeys(sks);    
-    print("public key was generated");
     
     auto addrSk = sks.getAddrSk();
     auto addrPk = pks.getAddrPk();   
-    print("address secretKey",addrSk);
-    print("address publicKey",addrPk);
 
     Note note(1000u,addrPk);
-    print("Note created");
     
     auto cm = note.cm();
     print("[CM]", cm);

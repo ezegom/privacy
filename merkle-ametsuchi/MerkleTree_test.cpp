@@ -15,8 +15,13 @@
 #include "ametsuchi/merkle_tree/merkle_tree.h"
 #include "ametsuchi/ametsuchi.h"
 
-Note generateNote(){
-    std::string name = "test";
+ametsuchi::merkle::hash_t toHash_t(const uint256& u){
+    ametsuchi::merkle::hash_t h;
+    memcpy(h.begin(),u.begin(),ametsuchi::merkle::HASH_LEN);
+    return h;
+}
+
+Note generateNote(const std::string& name){
     SecretKeys sks(name);
     sks.generateKeys();
     PublicKeys pks(name);
@@ -64,7 +69,7 @@ void test2(const std::string& db_folder,const int& t)
     }
     ametsuchi::Ametsuchi amet(db_folder);
     for(auto i=0; i<t; i++){
-        auto note = generateNote();
+        auto note = generateNote("test");
         auto vec = toVectoerUint8(note.cm());
         amet.append(vec);
     }

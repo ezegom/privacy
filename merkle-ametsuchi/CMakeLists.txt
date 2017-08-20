@@ -9,19 +9,21 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
+set(AMETSUCHI_DIR /home/eunsoo/privacy/external/iroha-ametsuchi)
+
 set(AMETSUCHI_INCLUDE 
-        ../iroha-ametsuchi/include
-        ../iroha-ametsuchi/schema
+        ${AMETSUCHI_DIR}/include
+        ${AMETSUCHI_DIR}/schema
         )
 set(AMETSUCHI_SRC
-        ../iroha-ametsuchi/src/ametsuchi
-        ../iroha-ametsuchi/src/ametsuchi/merkle_tree
+        ${AMETSUCHI_DIR}/src/ametsuchi
+        ${AMETSUCHI_DIR}/src/ametsuchi/merkle_tree
         
 )
 set(EXTERNAL_INCLUDE
-        ../iroha-ametsuchi/external/src/google_flatbuffers/include
-        ../iroha-ametsuchi/external/src/lmdb_LMDB/libraries/liblmdb
-        ../iroha-ametsuchi/external/src/gvanas_keccak/bin/generic64/libkeccak.a.headers
+        ${AMETSUCHI_DIR}/external/src/google_flatbuffers/include
+        ${AMETSUCHI_DIR}/external/src/lmdb_LMDB/libraries/liblmdb
+        ${AMETSUCHI_DIR}/external/src/gvanas_keccak/bin/generic64/libkeccak.a.headers
         )
 include_directories(
         ${CMAKE_SOURCE_DIR}/include 
@@ -44,18 +46,18 @@ file(GLOB source_files
         "*.h"
         )
 
-add_executable(MerkleTest 
+add_executable(merkle_test_ametsuchi
         ${source_files} 
         ${dependencies}
         ${AMETSUCHI_INCLUDE}
         ${AMETSUCHI_SRC}
         )
-add_dependencies(MerkleTest
+add_dependencies(merkle_test_ametsuchi
         ametsuchi
         AccountsLib
         NoteLib
 )
-target_link_libraries(MerkleTest 
+target_link_libraries(merkle_test_ametsuchi
         ${Boost_FILESYSTEM_LIBRARY} 
         ${Boost_SYSTEM_LIBRARY}
         sodium 
