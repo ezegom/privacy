@@ -11,38 +11,35 @@ set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
-
 include_directories(
         ${CMAKE_SOURCE_DIR}/include 
         ${sodium_INCLUDE_DIR} 
         ${Boost_INCLUDE_DIRS}
         )
 
-file(GLOB dependencies 
-        "../include/*.h" 
-        "../include/*.cpp"
-        )
+file(GLOB ACCOUNTS_INCLUDE "*Keys.h")
+file(GLOB ACCOUNTS_SRC "*Keys.cpp")
+set(TEST_SRC main.cpp)
 
-file(GLOB source_files
-        "*.cpp"
-        "*.h")
-
-add_executable(Accounts 
-        ${source_files} 
-        ${dependencies}
-        )
+# AccountLib
 add_library(AccountsLib        
-        ${source_files} 
-        ${dependencies}
-        )
-
-target_link_libraries(Accounts 
-        sodium 
-        ${Boost_FILESYSTEM_LIBRARY} 
-        ${Boost_SYSTEM_LIBRARY} 
+        ${ACCOUNTS_INCLUDE}
+        ${ACCOUNTS_SRC} 
         )
 target_link_libraries(AccountsLib 
         sodium 
         ${Boost_FILESYSTEM_LIBRARY} 
         ${Boost_SYSTEM_LIBRARY} 
+        DependencyLib
         )
+# AccountsLib test
+add_executable(Accounts_test
+        ${TEST_SRC}
+        )
+target_link_libraries(Accounts_test
+        AccountsLib
+        sodium 
+        ${Boost_FILESYSTEM_LIBRARY} 
+        ${Boost_SYSTEM_LIBRARY} 
+        )
+
