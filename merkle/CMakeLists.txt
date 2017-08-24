@@ -28,6 +28,7 @@ add_library(MerkleTreeLib
 target_link_libraries(MerkleTreeLib
     AccountsLib
     NoteLib
+    DependencyLib
 )
 
 add_executable(MerkleTree_test
@@ -37,4 +38,5 @@ target_link_libraries(MerkleTree_test
     MerkleTreeLib
     AccountsLib
     NoteLib
+    DependencyLib
 )

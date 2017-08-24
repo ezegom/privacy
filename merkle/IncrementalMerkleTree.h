@@ -5,16 +5,21 @@
 #ifndef PRIVATEUTXO_MERKLETREE_H_
 #define PRIVATEUTXO_MERKLETREE_H_
 
-#include <iostream>
 #include <deque>
+#include <iostream>
 #include <boost/optional.hpp>
 #include <boost/static_assert.hpp>
-
-#include "uint256.h"
 #include "serialize.h"
+#include "uint256.h"
 
-#include "Zcash.h"
+// #include "Zcash.h"
 
+#define INCREMENTAL_MERKLE_TREE_DEPTH 29
+#define INCREMENTAL_MERKLE_TREE_DEPTH_TESTING 5
+
+/**
+ * used to index cm and nullifier in merkle tree
+ */
 class MerklePath {
 public:
     std::vector<std::vector<bool>> authentication_path;
@@ -33,12 +38,24 @@ public:
     MerklePath(std::vector<std::vector<bool>> authentication_path, std::vector<bool> index)
     : authentication_path(authentication_path), index(index) { }
 };
-// EmptyMerkleRoots
+
+/**
+ * used to calculate root of not fully completed merkle tree
+ * 
+ *  - empty_roots[0] is always SHA256Compress composed with zeros(00...00 in 256bit)
+ *  - for i > 1
+ *    empty_roots[i]= SHA256Compress::combine(empty_roots[i-1], empty_roots[i-1])
+ * 
+ * e.g.
+ * If 3 elements is appended in 3-depth merkle tree, the root of the merkle tree 
+ * will be the hash of the 3 appended elements and 5 all-zero elements. While 
+ * IncrementalMerkleTree class calculate the root using this class.
+ */
 template<size_t Depth, typename Hash>
 class EmptyMerkleRoots {
 public:
     EmptyMerkleRoots() {
-        empty_roots.at(0) = Hash();
+        empty_roots.at(0) = Hash(); // 00000...(256bit)
         for (size_t d = 1; d <= Depth; d++) {
             empty_roots.at(d) = Hash::combine(empty_roots.at(d-1), empty_roots.at(d-1));
         }
@@ -53,6 +70,9 @@ private:
     boost::array<Hash, Depth+1> empty_roots;
 };
 
+/**
+ * comparator of EmptyMerkleRoots
+ */
 template<size_t Depth, typename Hash>
 bool operator==(const EmptyMerkleRoots<Depth, Hash>& a,
                 const EmptyMerkleRoots<Depth, Hash>& b) {
@@ -62,8 +82,11 @@ bool operator==(const EmptyMerkleRoots<Depth, Hash>& a,
 template<size_t Depth, typename Hash>
 class IncrementalWitness;
 
-
-// IncrementalMerkleTree
+/**
+ * Incremental Merkle Tree
+ * 
+ *  - Depth is set to 29 by zcash protocol default.
+ */
 template<size_t Depth, typename Hash>
 class IncrementalMerkleTree {
 
@@ -106,7 +129,7 @@ public:
     static Hash empty_root() {
         return emptyroots.empty_root(Depth);
     }
-
+    // MerklePath path(std::deque<Hash> filler_hashes = std::deque<Hash>()) const;
     template <size_t D, typename H>
     friend bool operator==(const IncrementalMerkleTree<D, H>& a,
                            const IncrementalMerkleTree<D, H>& b);
@@ -124,6 +147,9 @@ private:
     void wfcheck() const;
 };
 
+/**
+ * comparator of IncrementalMerkleTrees
+ */
 template<size_t Depth, typename Hash>
 bool operator==(const IncrementalMerkleTree<Depth, Hash>& a,
                 const IncrementalMerkleTree<Depth, Hash>& b) {
@@ -133,6 +159,9 @@ bool operator==(const IncrementalMerkleTree<Depth, Hash>& a,
             a.parents == b.parents);
 }
 
+/**
+ * used for IncrementalMerkleTree class calculating witness
+ */
 template <size_t Depth, typename Hash>
 class IncrementalWitness {
 friend class IncrementalMerkleTree<Depth, Hash>;
@@ -190,6 +219,9 @@ bool operator==(const IncrementalWitness<Depth, Hash>& a,
             a.cursor_depth == b.cursor_depth);
 }
 
+/**
+ * used to combine two uint256 hashes to make merkle tree 
+ */
 class SHA256Compress : public uint256 {
 public:
     SHA256Compress() : uint256() {}

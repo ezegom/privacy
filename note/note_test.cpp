@@ -1,39 +1,11 @@
-#include "Note.h"
-#include "uint256.h"
-#include "PublicKeys.h"
-#include "SecretKeys.h"
-#include "sodium.h"
-#include "strutils.h"
 #include <iostream>
 #include <string>
-
-inline void print(const char* s){
-    std::cout << s << std::endl;
-}
-
-inline void print(const unsigned char* begin, const unsigned char* end){
-    std::cout<< HexStr(begin,end) <<std::endl;
-}
-
-inline void print(const uint256& s){
-    print(s.begin(), s.end());
-}
-
-inline void print(const uint252& s){
-    print(s.begin(), s.end());
-}
-
-inline void print(const char* name, const uint256& s){
-    auto end=s.end();
-    std::cout<<name<<": ";
-    print(s);
-}
-
-inline void print(const char* name, const uint252& s){
-    auto end=s.end();
-    std::cout<<name<<": ";
-    print(s);
-}
+#include "Note.h"
+#include "uint256.h"
+#include "accounts/PublicKeys.h"
+#include "accounts/SecretKeys.h"
+#include "sodium.h"
+#include "strutils.h"
 
 void test(){
     if (sodium_init() == -1 ){
@@ -53,10 +25,9 @@ void test(){
     Note note(1000u,addrPk);
     
     auto cm = note.cm();
-    print("[CM]", cm);
+    std::cout<<"[CM]"<< HexStr(cm.begin(),cm.end())<<std::endl;
     auto nullifier = note.nullifier(addrSk);
-    print("[Nullifier]", nullifier);
-    // TODO ametsuchi 
+    std::cout<<"[Nullifier]"<< HexStr(nullifier.begin(),nullifier.end())<<std::endl;
 }
 
 int main (int argc, char** argv){

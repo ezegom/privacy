@@ -9,7 +9,11 @@
 #include "IncrementalMerkleTree.h"
 #include "sha256.h"
 #include "util.h"
+#include "strutils.h"
 
+/**
+ * used to combine two uint256 hashes to make merkle tree
+ */
 SHA256Compress SHA256Compress::combine(const SHA256Compress& a, const SHA256Compress& b)
 {
     SHA256Compress res = SHA256Compress();
@@ -41,7 +45,6 @@ public:
             return emptyroots.empty_root(depth);
         }
     }
-
 };
 
 template<size_t Depth, typename Hash>
@@ -50,6 +53,9 @@ EmptyMerkleRoots<Depth, Hash> PathFiller<Depth, Hash>::emptyroots;
 template<size_t Depth, typename Hash>
 EmptyMerkleRoots<Depth, Hash> IncrementalMerkleTree<Depth, Hash>::emptyroots;
 
+/**
+ * used to check after serialization
+ */
 template<size_t Depth, typename Hash>
 void IncrementalMerkleTree<Depth, Hash>::wfcheck() const {
     if (parents.size() >= Depth) {
@@ -72,6 +78,9 @@ void IncrementalMerkleTree<Depth, Hash>::wfcheck() const {
     }
 }
 
+/**
+ * return the last appended Hashes
+ */
 template<size_t Depth, typename Hash>
 Hash IncrementalMerkleTree<Depth, Hash>::last() const {
     if (right) {
@@ -83,6 +92,9 @@ Hash IncrementalMerkleTree<Depth, Hash>::last() const {
     }
 }
 
+/**
+ * return the number of appended Hashes
+ */
 template<size_t Depth, typename Hash>
 size_t IncrementalMerkleTree<Depth, Hash>::size() const {
     size_t ret = 0;
@@ -101,7 +113,9 @@ size_t IncrementalMerkleTree<Depth, Hash>::size() const {
     }
     return ret;
 }
-
+/**
+ * append the hash to the merkle tree
+ */
 template<size_t Depth, typename Hash>
 void IncrementalMerkleTree<Depth, Hash>::append(Hash obj) {
     if (is_complete(Depth)) {
@@ -138,9 +152,13 @@ void IncrementalMerkleTree<Depth, Hash>::append(Hash obj) {
     }
 }
 
-// This is for allowing the witness to determine if a subtree has filled
-// to a particular depth, or for append() to ensure we're not appending
-// to a full tree.
+/**
+ * checks merkle tree is full
+ * 
+ * This is for allowing the witness to determine if a subtree has filled
+ * to a particular depth, or for append() to ensure we're not appending
+ * to a full tree.
+ */
 template<size_t Depth, typename Hash>
 bool IncrementalMerkleTree<Depth, Hash>::is_complete(size_t depth) const {
     if (!left || !right) {
@@ -160,8 +178,23 @@ bool IncrementalMerkleTree<Depth, Hash>::is_complete(size_t depth) const {
     return true;
 }
 
-// This finds the next "depth" of an unfilled subtree, given that we've filled
-// `skip` uncles/subtrees.
+/**
+ * finds the next "depth" of an unfilled subtree, given that we've filled
+ * `skip` uncles/subtrees.
+ * 
+ * Argument size_t skip is 0 by default 
+ * 
+ * e.g.
+ * if skip=0:                       if skip=1:
+ * Appended CMs: 1	next_depth: 0   Appended CMs: 1	next_depth: 1
+ * Appended CMs: 2	next_depth: 1   Appended CMs: 2	next_depth: 2
+ * Appended CMs: 3	next_depth: 0   Appended CMs: 3	next_depth: 2
+ * Appended CMs: 4	next_depth: 2   Appended CMs: 4	next_depth: 3
+ * Appended CMs: 5	next_depth: 0   Appended CMs: 5	next_depth: 1
+ * Appended CMs: 6	next_depth: 1   Appended CMs: 6	next_depth: 3
+ * Appended CMs: 7	next_depth: 0   Appended CMs: 7	next_depth: 3
+ * Appended CMs: 8	next_depth: 3   Appended CMs: 8	next_depth: 4
+ */ 
 template<size_t Depth, typename Hash>
 size_t IncrementalMerkleTree<Depth, Hash>::next_depth(size_t skip) const {
     if (!left) {
@@ -171,7 +204,6 @@ size_t IncrementalMerkleTree<Depth, Hash>::next_depth(size_t skip) const {
             return 0;
         }
     }
-
     if (!right) {
         if (skip) {
             skip--;
@@ -181,7 +213,6 @@ size_t IncrementalMerkleTree<Depth, Hash>::next_depth(size_t skip) const {
     }
 
     size_t d = 1;
-
     BOOST_FOREACH(const boost::optional<Hash>& parent, parents) {
         if (!parent) {
             if (skip) {
@@ -190,14 +221,22 @@ size_t IncrementalMerkleTree<Depth, Hash>::next_depth(size_t skip) const {
                 return d;
             }
         }
-
         d++;
     }
 
     return d + skip;
 }
 
-// This calculates the root of the tree.
+/**
+ * calculates the root of the tree.
+ * 
+ *  - root is the combined hashed of appended elements in merkle tree 
+ *    and all zero elements
+ * e.g.
+ * If 3 elements is appended in 3-depth merkle tree, the root of the merkle tree 
+ * will be the hash of the 3 appended elements and 5 all-zero elements. While 
+ * IncrementalMerkleTree class calculate the root using this class.
+ */  
 template<size_t Depth, typename Hash>
 Hash IncrementalMerkleTree<Depth, Hash>::root(size_t depth,
                                               std::deque<Hash> filler_hashes) const {
@@ -220,7 +259,7 @@ Hash IncrementalMerkleTree<Depth, Hash>::root(size_t depth,
         d++;
     }
 
-    // We may not have parents for ancestor trees, so we fill
+    // it may not have parents for ancestor trees, so we fill
     // the rest in here.
     while (d < depth) {
         root = Hash::combine(root, filler.next(d));
@@ -230,8 +269,24 @@ Hash IncrementalMerkleTree<Depth, Hash>::root(size_t depth,
     return root;
 }
 
-// This constructs an authentication path into the tree in the format that the circuit
-// wants. The caller provides `filler_hashes` to fill in the uncle subtrees.
+/**
+ * finds last appended element's path in the merkle tree
+ * 
+ * argument std::deque<Hash> filler_hashes is empty deque by default
+ * 
+ * e.g. If 5 elements appended in 3-depth merkle tree
+ *             O            
+ *           /   \
+ *          O     O         0: all-zero element
+ *         / \   / \        i(i>0): ith appended element
+ *        O  O   O  O
+ *       /\  /\  /\ /\
+ * elem: 12  34  50 00
+ * MerklePath.index:     T F F (Right->Left->Left from root)
+ * 
+ * This constructs an authentication path into the tree in the format that the circuit
+ * wants. The caller provides `filler_hashes` to fill in the uncle subtrees.
+ */ 
 template<size_t Depth, typename Hash>
 MerklePath IncrementalMerkleTree<Depth, Hash>::path(std::deque<Hash> filler_hashes) const {
     if (!left) {

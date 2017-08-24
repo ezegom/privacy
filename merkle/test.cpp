@@ -1,10 +1,14 @@
-#include <string>
 #include <iostream>
-#include "IncrementalMerkleTree.h"
-#include "uint256.h"
+#include <string>
 #include "accounts/SecretKeys.h"
 #include "accounts/PublicKeys.h"
 #include "note/Note.h"
+#include "strutils.h"
+#include "uint256.h"
+#include "IncrementalMerkleTree.h"
+
+
+#define INCREMENTAL_MERKLE_TREE_DEPTH_TEST 5
 
 Note generateNote(const std::string& name){
     SecretKeys sks(name);
@@ -14,28 +18,70 @@ Note generateNote(const std::string& name){
     auto addrPk = pks.getAddrPk();  
     return Note(1000u,addrPk);
 }
-SHA256Compress toSHA256Compress(const uint256& n){
-    return SHA256Compress(n);
-}
-void test(){
-    ZCIncrementalMerkleTree merkle;
+
+void test_witness(){
+    ZCIncrementalMerkleTree tree;
+
     auto note = generateNote("merkle_test_zcash");
-    auto note_compressed = toSHA256Compress(note.cm());
+    auto cm_compressed = SHA256Compress(note.cm());
     
-    // TODO: more tests!! append good
-    for (auto i=0 ; i<100000; ++i){
-        merkle.append(note_compressed);
-        if(i%10000==0){
-            std::cout << "[Loop " <<i << "]" << std::endl;
-            std::cout <<"size: "<<merkle.size()<<std::endl;
-            std::cout << "Dynamic Memory Usage: " 
-            <<merkle.DynamicMemoryUsage()<< std:: endl;
-        }
+    for (auto i=0 ; i<32; ++i){
+        tree.append(cm_compressed);
     }
-    // TODO: 종속성 최소화해서 라이브러리 만들기
+
+    auto rt = tree.root();
+    auto witness = tree.witness();
+
+    // The witness root must equal the input root.
+    if (witness.root() != rt) {
+        throw std::invalid_argument("joinsplit not anchored to the correct root");
+    }
+
+    // The tree must witness the correct element
+    if (note.cm() != witness.element()) {
+        throw std::invalid_argument("witness of wrong element for joinsplit input");
+    }
+    std::cout << "success" << std::endl;
 }
 
+void test_full_merkle_tree(){
+    // Depth=5
+    ZCTestingIncrementalMerkleTree tree; 
+    
+    auto note = generateNote("merkle_test_zcash");
+    auto cm_compressed = SHA256Compress(note.cm());
+    
+    for (auto i=0 ; i<32; ++i){
+        tree.append(cm_compressed);
+    }
+    std::cout<<"size: " << tree.size()<<std::endl;
+    // tree.append(cm_compressed);//it will throw exception
+}
+
+void test_witness_path(size_t appended){
+    ZCTestingIncrementalMerkleTree tree;
+
+    auto note = generateNote("merkle_test_zcash");
+    auto cm_compressed = SHA256Compress(note.cm());
+    
+    for (auto i=0 ; i<appended; ++i) {
+        tree.append(cm_compressed);
+    }
+
+    auto rt = tree.root();
+    auto witness = tree.witness();
+    auto path = witness.path();
+    
+    std::cout << appended<< " CMs appended: ";
+    for (const bool& index : path.index) {
+        std::cout<<(index?'T':'F') << " ";
+    }
+    std::cout<<std::endl;
+} 
+
 int main(int argc, char** argv){
-    test();
+    test_witness();
+    test_full_merkle_tree();
+    test_witness_path(15);
     return 0;
 }
