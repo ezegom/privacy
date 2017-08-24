@@ -11,14 +11,13 @@ void test(){
     if (sodium_init() == -1 ){
         throw std::runtime_error("Sodium init failed");
     }
-    
     std::string name = "note_test";
     // creating key pairs
     SecretKeys sks(name);
     sks.generateKeys();
     PublicKeys pks(name);
     pks.generateKeys(sks);    
-    
+  
     auto addrSk = sks.getAddrSk();
     auto addrPk = pks.getAddrPk();   
 
