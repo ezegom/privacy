@@ -5,9 +5,9 @@
 #ifndef ACCOUNTS_PUBLICKEYS_H
 #define ACCOUNTS_PUBLICKEYS_H
 
-
-#include "SecretKeys.h"
 #include <string>
+#include "SecretKeys.h"
+
 /*
  * TODO: What if someone wants to generate multiple addresses? This must be handled by wallet
  * TODO: generateKeys can't overwrite previous keys, as the sk->pk relationship could be lost.

@@ -1,4 +1,6 @@
 /cmake-build-debug/*
 workspace.xml
-/build/
 /.vscode/
+/build/
+/external/
+/merkle-ametsuchi/

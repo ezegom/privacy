@@ -9,49 +9,28 @@ find_package(Boost COMPONENTS filesystem REQUIRED)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ../cmake)
 include_directories(
         ${CMAKE_SOURCE_DIR}/include
-        ${CMAKE_SOURCE_DIR}/accounts
+        ${CMAKE_SOURCE_DIR}
 )
-file(GLOB ACCOUNTS
-        "../accounts/*Keys.cpp" 
-        "../accounts/*Keys.h"
-        )
-set(NOTE_DEPENDENCIES
-        ${CMAKE_SOURCE_DIR}/include/sha256.cpp 
-        ${CMAKE_SOURCE_DIR}/include/sha256.h
-        ${CMAKE_SOURCE_DIR}/include/strutils.h
-        ${CMAKE_SOURCE_DIR}/include/prf.cpp
-        ${CMAKE_SOURCE_DIR}/include/prf.h
-        )
-file(GLOB NOTE_SRC
-        "*.cpp"
-        )
-file(GLOB NOTE_INCLUDE
-        "*.h"
-        )
-set(NoTE_TEST_SRC
-        note_test.cpp
-)
+file(GLOB NOTE_INCLUDE *.h )
+file(GLOB NOTE_SRC *.cpp )
+set(TEST_SRC note_test.cpp)
 
-# Test Binary
-add_executable(NoteTest 
-        ${NOTE_TEST_SRC} 
-        ${NOTE_INCLUDE}
-        ${ACCOUNTS} 
-        )
-target_link_libraries(NoteTest
-        NoteLib 
-        sodium 
-        ${Boost_FILESYSTEM_LIBRARY} 
-        ${Boost_SYSTEM_LIBRARY}
-        )
-# Library
+# Note library
 add_library(NoteLib 
-        ${NOTE_SRC}
         ${NOTE_INCLUDE}
+        ${NOTE_SRC}
         )
-target_link_libraries(NoteLib 
+target_link_libraries(NoteLib
         sodium 
-        ${Boost_FILESYSTEM_LIBRARY} 
+        ${Boost_FILESYSTEM_LIBRARY}     
         ${Boost_SYSTEM_LIBRARY}
-        AccountsLib
         )
+        
+# Note test binary
+add_executable(Note_test
+        ${TEST_SRC}
+        )
+target_link_libraries(Note_test
+        NoteLib
+        AccountsLib
+)
