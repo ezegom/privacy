@@ -17,8 +17,6 @@ private:
     void storeKeys() const;
     std::string toHexString() const;
 
-
-
 public:
     explicit SecretKeys(std::string _accName) : accName(_accName), addrSk(uint252()) , encSk(uint256()) {}
     void generateKeys();

@@ -10,8 +10,6 @@
 #include "prf.h"
 
 
-
-
 /*
 Purpose: Generate encryption public key from secret key.
     crypto_scalarmult_base(q,n);

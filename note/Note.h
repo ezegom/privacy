@@ -23,14 +23,14 @@ public:
 
     Note(uint64_t _value, uint256 a_pk);
 
-    Note(uint256 _r,
-         uint64_t _value,
-         uint256 _rho,
-         uint256 _a_pk) : r(_r), value(_value), rho(_rho), a_pk(_a_pk) {};
+    Note(uint256 r,
+         uint64_t value,
+         uint256 rho,
+         uint256 a_pk) : r(r), value(value), rho(rho), a_pk(a_pk) {};
 
-    Note(uint64_t _value,
-         uint256 _rho,
-         uint256 _r): value(_value), rho(_rho), r(_r) {};
+    Note(uint64_t value,
+         uint256 rho,
+         uint256 r): value(value), rho(rho), r(r) {};
 
     static Note plaintextToNote(std::array<unsigned char, NOTE_PLAINTEXT_BYTES> blob);
 
