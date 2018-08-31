@@ -99,7 +99,6 @@ int testEncryption(){
 
 
 int main (int argc, char ** argsv){
-    //Test DH-SharedSecret
   if ( testKeyDerivation() && testEncryption() ) {
     std::cout<<"Sucess!"<<std::endl;
   } else {
