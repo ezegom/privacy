@@ -101,9 +101,9 @@ int testEncryption(){
 int main (int argc, char ** argsv){
     //Test DH-SharedSecret
   if ( testKeyDerivation() && testEncryption() ) {
-    std::cout<<"Sucess!"<<std::endl;;
+    std::cout<<"Sucess!"<<std::endl;
   } else {
-    std::cout<<"Fail"<<std::endl;;
+    std::cout<<"Fail"<<std::endl;
   }
 
 }
