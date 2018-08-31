@@ -31,7 +31,7 @@ public:
                    uint256 pkEnc,
                    uint256 ephPk,
                    uint256 hSig);
-    static uint256 getDhSharedSecret(const uint256& sk, uint256& _pk); //make private, public for testing only.
+    static uint256 getDhSharedSecret(const uint256& sk, uint256& _pk); 
 };
 
 
