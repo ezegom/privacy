@@ -15,7 +15,6 @@
  * KDF Test:
  * Alice sends encrypted message to Bob
  */
-
 int testKeyDerivation(){
     //Alice generate ephemeral key pair
     EphemeralKeys AliceEphemeralKeys;
@@ -45,10 +44,10 @@ int testKeyDerivation(){
     BobSymKey.deriveKey(BobSharedSecret, BobPublicKeys.getPkEnc(), AliceEphemeralKeys.getEphPk(), uint256());
 
    if (memcmp(BobSymKey.symmetricKey, AliceSymKey.symmetricKey, 32) == 0 ){
-        std::cout<<"success in sym key derivation"<<std::endl;
-       return 0;
+        std::cout<<"success in sym key derivation "<<std::endl;
+       return 1;
    }
-    return -1;
+    return 0;
 
 }
 
@@ -85,9 +84,9 @@ int testEncryption(){
                                      BobPkEnc,
                                      uint256());
 
-
     if (!memcmp(plainText.begin(), noteCharArray.begin(), NOTE_PLAINTEXT_BYTES)){
-        //std::cout<<"success in not encryption and decryption"<<std::endl;
+        std::cout<<"success in not encryption and decryption "<<std::endl;
+        return 1;
     }
 
     Note newNote = Note::plaintextToNote(plainText);
@@ -101,7 +100,10 @@ int testEncryption(){
 
 int main (int argc, char ** argsv){
     //Test DH-SharedSecret
-    testKeyDerivation();
-    testEncryption();
+  if ( testKeyDerivation() && testEncryption() ) {
+    std::cout<<"Sucess!"<<std::endl;;
+  } else {
+    std::cout<<"Fail"<<std::endl;;
+  }
 
 }
